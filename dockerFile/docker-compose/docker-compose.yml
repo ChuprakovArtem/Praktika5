@@ -1,0 +1,7 @@
+version: '3'
+services:
+ app:
+    image: ubuntu-vizual_pip1:latest
+    command: sh -c "bash /scripts/test-ip.bash && sleep 5"
+    volumes:
+      - shard:/app/data

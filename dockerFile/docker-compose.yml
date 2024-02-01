@@ -1,6 +1,0 @@
-version: '2'
-services:
- your_service:
-    image: ubuntu_hello:latest
-    command: bash /prog/hello.bash
-

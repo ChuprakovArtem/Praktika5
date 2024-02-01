@@ -1,6 +1,7 @@
 # Praktika5
 
 5.7 Практическая работа
+
 1. Установка Docker и Docker Compose:
 a. Установил Docker и Docker Compose на систему.
 b. Настроил Docker для работы без прав root (добавление
@@ -25,58 +26,48 @@ b. Собрал Docker-образ из Dockerfile командой :
 
 с. docker build -t ubuntu-vizual_pip .
 
-4. Запуск и тестирование Python-приложения в Docker-контейнере:
-a. Запустил Docker-контейнер из созданного образа, образ поместил
-на https://hub.docker.com/
+4. Запуск и тестирование bash-приложения в Docker-контейнере:
 
-docker pull arch1987/ubuntu-vizual_pip
+	Запустил Docker-контейнер из созданного образа, образ поместил
+на https://hub.docker.com/ скачать можно по ссылке ниже
+docker pull arch1987/ubuntu_hello
+Проверил, что программа работает корректно внутри контейнера.b.
 
-b. Проверил, что программа работает корректно внутри контейнера.
+	Войти в контейнер:
+ docker run -it ubuntu_hello:latest /bin/bash
+	
+	Выполнить запуск bash скрипта
+source hello.bash
 
-Так как программа с графическим интерфейсом необходимо
-выполнить следующие манипуляции для запуска:
- 1. Войти в контейнер:
-docker run -it ubuntu-vizual_pip /bin/bash
 
-2. Узнать свой IP в контейнере
-ifconfig
-
-3. Запустим Xpra внутри контейнера:
-
-xpra start --start=xterm --bind-tcp=0.0.0.0:9009
-
-4. Подключимся к Xpra с хоста:
-
-k. xpra attach ws://172.17.0.2:9009
-
-5. В Xtem ввести команду запуска python кода:
-
-python3 gglit.py
  
 В продолжении описания работы программы хочу уточнить, что
 пронумерованные файлы .png сохраняются в корневую папку prog,
 рядом со скриптом.
 
-6. Работа с Docker Compose:
-Создал docker-compose.yml, который запускает Docker-контейнер с программой.
-Добавил комментарии в docker-compose.yml, объясняющие его структуру и команды.
-#В этой строке указывается версия формата файла Docker Compose
-version: '2'
+5. Работа с Docker Compose:
+  a. Создал docker-compose.yml, который запускает Docker-контейнер с
+программой.
+  b. Добавил комментарии в docker-compose.yml, объясняющие его
+структуру и команды.
+
+#В этой строке указывается версия формата файла Docker
+Compose
+ version: '2'
 #список сервисов
-services:
+ services:
 #имя службы
  your_service:
 #контейнер который нужно запускать
-    image: ubuntu_hello:latest
+image: ubuntu_hello:latest
 #команда на запуск .bash скрипта
-    command: bash /prog/hello.bash
+command: bash /docker-prakt/hello.bash
+
+ c. Убедился, что Docker Compose позволяет запустить контейнер.
 
 
-Убедился, что Docker Compose позволяет запустить контейнер.
 
-
-
-7. Оформление проекта на GitHub:
+6. Оформление проекта на GitHub:
 a. Поместил Dockerfile и docker-compose.yml в репозиторий на
 GitHub.
 
